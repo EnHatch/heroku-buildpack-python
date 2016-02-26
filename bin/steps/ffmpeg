@@ -1,0 +1,26 @@
+#!/usr/bin/env bash
+VENDORED_FFMPEG="http://ffmpeg.org/releases/ffmpeg-2.7.tar.bz2"
+
+PKG_CONFIG_PATH="/app/.heroku/vendor/lib/pkgconfig:$PKG_CONFIG_PATH"
+
+# Syntax sugar.
+source $BIN_DIR/utils
+
+bpwatch start ffmpeg_install
+
+# If GDAL exists within requirements, use vendored gdal.
+if (pip-grep -s requirements.txt av &> /dev/null) then
+
+  if [ -f ".heroku/vendor/bin/ffmpeg" ]; then
+    export FFMPEG=$(pwd)/vendor
+  else
+    echo "-----> Noticed PyAV. Bootstrapping ffmpeg."
+    mkdir -p .heroku/vendor
+    # Download and extract cryptography into target vendor directory.
+    curl $VENDORED_FFMPEG -s | tar jxv -C .heroku/vendor &> /dev/null
+
+    export FFMPEG=$(pwd)/vendor
+  fi
+fi
+
+bpwatch stop ffmpeg_install

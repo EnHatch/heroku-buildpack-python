@@ -1,0 +1,23 @@
+#!/usr/bin/env bash
+# Build Path: /app/.heroku/vendor/
+
+OUT_PREFIX=$1
+
+# Use new path, containing autoconf.
+export PATH="/app/.heroku/python/bin/:$PATH"
+hash -r
+
+
+echo "Building gdal..."
+
+SOURCE_TARBALL='http://ffmpeg.org/releases/ffmpeg-2.7.tar.bz2'
+
+curl -L $SOURCE_TARBALL | tar jx
+
+cd ffmpeg-2.7
+./configure --disable-static --enable-shared --disable-doc
+make
+sudo make install
+
+# Cleanup
+cd ..

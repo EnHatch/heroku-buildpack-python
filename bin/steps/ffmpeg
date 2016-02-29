@@ -32,18 +32,18 @@ if (pip-grep -s requirements.txt av &> /dev/null) then
 
 	cd ../
 
-	set-env PATH '$PATH:$HOME/.heroku/vendor/ffmpeg/bin'
-	set-env LIBRARY_PATH '$LIBRARY_PATH:$HOME/.heroku/vendor/ffmpeg/lib'
-	set-env LD_LIBRARY_PATH '$LD_LIBRARY_PATH:$HOME/.heroku/vendor/ffmpeg/lib'
-	set-env PKG_CONFIG_PATH '$PKG_CONFIG_PATH:$HOME/.heroku/vendor/ffmpeg/lib/pkgconfig'
+	set-env PATH '$HOME/.heroku/vendor/ffmpeg/bin:$PATH'
+	set-env LIBRARY_PATH '$HOME/.heroku/vendor/ffmpeg/lib:$LIBRARY_PATH'
+	set-env LD_LIBRARY_PATH '$HOME/.heroku/vendor/ffmpeg/lib:$LD_LIBRARY_PATH'
+	set-env PKG_CONFIG_PATH '$HOME/.heroku/vendor/ffmpeg/lib/pkgconfig:$PKG_CONFIG_PATH'
 
 	echo $PKG_CONFIG_PATH
 	echo $LD_LIBRARY_PATH
 
-	export PATH=$PATH:$HOME/.heroku/vendor/ffmpeg/bin
-	export LIBRARY_PATH=$LIBRARY_PATH:$HOME/.heroku/vendor/ffmpeg/lib
-	export LD_LIBRARY_PATH=$LD_LIBRARY_PATH:$HOME/.heroku/vendor/ffmpeg/lib
-	export PKG_CONFIG_PATH=$PKG_CONFIG_PATH:$HOME/.heroku/vendor/ffmpeg/lib/pkgconfig
+	export PATH=$HOME/.heroku/vendor/ffmpeg/bin:$PATH
+	export LIBRARY_PATH=$HOME/.heroku/vendor/ffmpeg/lib:$LIBRARY_PATH
+	export LD_LIBRARY_PATH=$HOME/.heroku/vendor/ffmpeg/lib:$LD_LIBRARY_PATH
+	export PKG_CONFIG_PATH=$HOME/.heroku/vendor/ffmpeg/lib/pkgconfig:$PKG_CONFIG_PATH
 
     export FFMPEG=$(pwd)/vendor
   fi

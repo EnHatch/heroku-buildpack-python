@@ -19,5 +19,13 @@ cd ffmpeg-2.7
 make
 make install
 
+PROFILE_PATH="$HOME/.profile.d/ffmpeg.sh"
+mkdir -p $(dirname $PROFILE_PATH)
+echo 'export PATH="$PATH:$HOME/.heroku/vendor/ffmpeg/bin"' >> $PROFILE_PATH
+echo 'export LD_LIBRARY_PATH="$LD_LIBRARY_PATH:$HOME/.heroku/vendor/ffmpeg/lib"' >> $PROFILE_PATH
+echo 'export PKG_CONFIG_PATH="$PKG_CONFIG_PATH:$HOME/.heroku/vendor/ffmpeg/lib/pkgconfig"' >> $PROFILE_PATH
+
+source ~/.profile.d/ffmpeg.sh
+
 # Cleanup
 cd ..

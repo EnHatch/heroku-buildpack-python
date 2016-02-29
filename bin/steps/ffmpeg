@@ -26,12 +26,24 @@ if (pip-grep -s requirements.txt av &> /dev/null) then
 	make
 	make install
 
-	cd ../../../
-	
- #    PROFILE_PATH="$BUILD_DIR/.profile.d/ffmpeg.sh"
-	# mkdir -p $(dirname $PROFILE_PATH)
-	# echo 'export PATH="$PATH:$HOME/.heroku/vendor/ffmpeg/bin"' >> $PROFILE_PATH
-	# echo 'export LD_LIBRARY_PATH="$LD_LIBRARY_PATH:$HOME/.heroku/vendor/ffmpeg/lib"' >> $PROFILE_PATH
+	cd ../../
+
+	rm -rf ffmpeg-2.7
+
+	cd ../
+
+	set-env PATH '$PATH:$HOME/.heroku/vendor/ffmpeg/bin'
+	set-env LIBRARY_PATH '$LIBRARY_PATH:$HOME/.heroku/vendor/ffmpeg/lib'
+	set-env LD_LIBRARY_PATH '$LD_LIBRARY_PATH:$HOME/.heroku/vendor/ffmpeg/lib'
+	set-env PKG_CONFIG_PATH '$PKG_CONFIG_PATH:$HOME/.heroku/vendor/ffmpeg/lib/pkgconfig'
+
+	echo $PKG_CONFIG_PATH
+	echo $LD_LIBRARY_PATH
+
+	export PATH=$PATH:$HOME/.heroku/vendor/ffmpeg/bin
+	export LIBRARY_PATH=$LIBRARY_PATH:$HOME/.heroku/vendor/ffmpeg/lib
+	export LD_LIBRARY_PATH=$LD_LIBRARY_PATH:$HOME/.heroku/vendor/ffmpeg/lib
+	export PKG_CONFIG_PATH=$PKG_CONFIG_PATH:$HOME/.heroku/vendor/ffmpeg/lib/pkgconfig
 
     export FFMPEG=$(pwd)/vendor
   fi

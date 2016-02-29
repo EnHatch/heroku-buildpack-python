@@ -11,7 +11,7 @@ bpwatch start ffmpeg_install
 # If GDAL exists within requirements, use vendored gdal.
 if (pip-grep -s requirements.txt av &> /dev/null) then
 
-  if [ -d ".heroku/vendor/bin/ffmpeg-2.7" ]; then
+  if [ -d ".heroku/vendor/bin/ffmpeg" ]; then
     export FFMPEG=$(pwd)/vendor
   else
     echo "-----> Noticed PyAV. Bootstrapping ffmpeg."
@@ -19,11 +19,19 @@ if (pip-grep -s requirements.txt av &> /dev/null) then
     # Download and extract cryptography into target vendor directory.
     curl $VENDORED_FFMPEG -s | tar jxv -C .heroku/vendor &> /dev/null
 
-    cd .heroku/vendor/ffmpeg-2.7/
+    cd .heroku/vendor/ffmpeg-2.7
 
-    ./configure --disable-static --enable-shared --disable-doc && make && make install
+    ./configure --prefix=/app/.heroku/vendor/ffmpeg --disable-static --enable-shared --disable-doc
+	
+	make
+	make install
 
-    cd ../../../
+	cd ../../../
+	
+ #    PROFILE_PATH="$BUILD_DIR/.profile.d/ffmpeg.sh"
+	# mkdir -p $(dirname $PROFILE_PATH)
+	# echo 'export PATH="$PATH:$HOME/.heroku/vendor/ffmpeg/bin"' >> $PROFILE_PATH
+	# echo 'export LD_LIBRARY_PATH="$LD_LIBRARY_PATH:$HOME/.heroku/vendor/ffmpeg/lib"' >> $PROFILE_PATH
 
     export FFMPEG=$(pwd)/vendor
   fi

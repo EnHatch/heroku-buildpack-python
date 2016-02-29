@@ -207,9 +207,6 @@ source $BIN_DIR/steps/gdal
 # FFMPEG support
 source $BIN_DIR/steps/ffmpeg
 
-echo $PKG_CONFIG_PATH
-echo $LD_LIBRARY_PATH
-
 # Install dependencies with Pip.
 source $BIN_DIR/steps/pip-install
 

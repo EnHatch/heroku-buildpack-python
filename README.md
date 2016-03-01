@@ -53,3 +53,8 @@ Runtime options include:
 - `pypy-5.3.1` (unsupported, experimental)
 
 Other [unsupported runtimes](https://github.com/heroku/heroku-buildpack-python/tree/master/builds/runtimes) are available as well. Use at your own risk. 
+
+
+Changes Made:
+- Adds explicit location of libraries installed by heroku-buildpack-apt to paths used when packages are built.
+- Adds ffmpeg to vendored libraries and to the steps run during compilation so ffmpeg can be bootstrapped if PyAV is detected.

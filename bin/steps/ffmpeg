@@ -11,7 +11,7 @@ bpwatch start ffmpeg_install
 # If FFmpeg exists within requirements, use vendored ffmpeg.
 if (pip-grep -s requirements.txt av &> /dev/null) then
 
-  if [ -d ".heroku/vendor/ffmpeg" ]; then
+  if [ -f ".heroku/vendor/bin/ffmpeg" ]; then
     export FFMPEG=$(pwd)/vendor
   else
     echo "-----> Noticed PyAV. Bootstrapping ffmpeg."

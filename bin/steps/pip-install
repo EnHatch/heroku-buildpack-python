@@ -7,6 +7,9 @@ if [ ! "$SKIP_PIP_INSTALL" ]; then
 
     # Install dependencies with Pip.
     puts-step "Installing requirements with pip"
+    puts-step "PKG_CONFIG_PATH is $PKG_CONFIG_PATH"
+    puts-step "LIBRARY_PATH is $LIBRARY_PATH"
+    puts-step "LD_LIBRARY_PATH is $LD_LIBRARY_PATH"
 
     # Set Pip env vars
     # This reads certain environment variables set on the Heroku app config

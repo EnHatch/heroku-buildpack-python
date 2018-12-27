@@ -144,6 +144,11 @@ export LIBRARY_PATH=/app/.heroku/vendor/lib:/app/.heroku/python/lib:$LIBRARY_PAT
 export LD_LIBRARY_PATH=/app/.heroku/vendor/lib:/app/.heroku/python/lib:$LD_LIBRARY_PATH
 export PKG_CONFIG_PATH=/app/.heroku/vendor/lib/pkg-config:/app/.heroku/python/lib/pkg-config:$PKG_CONFIG_PATH
 
+puts-step "Checking vars before install"
+puts-step "PKG_CONFIG_PATH is $PKG_CONFIG_PATH"
+puts-step "LIBRARY_PATH is $LIBRARY_PATH"
+puts-step "LD_LIBRARY_PATH is $LD_LIBRARY_PATH"
+
 # The Application Code
 # --------------------
 
